@@ -12,3 +12,4 @@ result
 .terraform/
 config.tf.json
 terraform.tfstate
+terraform.tfstate.backup
