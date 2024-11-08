@@ -1,0 +1,14 @@
+# Sensitive
+.credentials*
+
+# Temp Nix stuff
+result
+
+# numtide/devshells
+.direnv/
+
+# Terraform
+.terraform.lock.hcl
+.terraform/
+config.tf.json
+terraform.tfstate
