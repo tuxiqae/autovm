@@ -76,7 +76,6 @@
         system,
         pkgs,
         lib,
-        self',
         ...
       }: {
         _module.args.pkgs = import nixpkgs {
@@ -87,10 +86,7 @@
             ];
         };
         apps = let
-          terraformWithPlugins = pkgs.terraform.withPlugins (plugins: [
-            pkgs.terraform-providers.null
-          ]);
-          tfBin = lib.getExe terraformWithPlugins;
+          tfBin = lib.getExe pkgs.terraform;
           outJson = "config.tf.json";
           terraformConfiguration = terranix.lib.terranixConfiguration {
             inherit system;
@@ -132,7 +128,6 @@
           programs = {
             alejandra.enable = true;
             shellcheck.enable = true;
-            beautysh.enable = true;
             terraform = {
               enable = true;
               package = pkgs.terraform;
@@ -146,12 +141,10 @@
         pre-commit.settings.hooks = {
           alejandra.enable = true;
           shellcheck.enable = true;
-          beautysh.enable = true;
           typos.enable = true;
           deadnix.enable = true;
           detect-aws-credentials.enable = true;
           detect-private-keys.enable = true;
-          flake-checker.enable = true;
           terraform-validate.enable = true;
           tflint.enable = true;
         };
