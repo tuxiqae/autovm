@@ -20,6 +20,10 @@
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-topology = {
       url = "github:oddlama/nix-topology";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,6 +46,7 @@
       imports = [
         inputs.devshell.flakeModule
         inputs.treefmt-nix.flakeModule
+        inputs.git-hooks-nix.flakeModule
         inputs.nix-topology.flakeModule
       ];
       flake = {
@@ -127,7 +132,7 @@
           programs = {
             alejandra.enable = true;
             shellcheck.enable = true;
-            shfmt.enable = true;
+            beautysh.enable = true;
             terraform = {
               enable = true;
               package = pkgs.terraform;
@@ -137,6 +142,18 @@
           settings = {
             formatter.shellcheck.options = ["--external-sources"];
           };
+        };
+        pre-commit.settings.hooks = {
+          alejandra.enable = true;
+          shellcheck.enable = true;
+          beautysh.enable = true;
+          typos.enable = true;
+          deadnix.enable = true;
+          detect-aws-credentials.enable = true;
+          detect-private-keys.enable = true;
+          flake-checker.enable = true;
+          terraform-validate.enable = true;
+          tflint.enable = true;
         };
       };
     };
