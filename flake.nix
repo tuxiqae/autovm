@@ -114,6 +114,7 @@
           destroy = makeTfApp "destroy";
         };
         devshells.default = {
+          devshell.startup.pre-commit.text = config.pre-commit.installationScript;
           packages = with pkgs; [
             awscli2
           ];
