@@ -1,5 +1,5 @@
 {
-  description = "A disko images example";
+  description = "Automatic EC2 provisioner";
 
   inputs = {
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
