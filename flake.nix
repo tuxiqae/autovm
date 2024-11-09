@@ -128,26 +128,15 @@
           projectRootFile = "flake.nix";
           programs = {
             alejandra.enable = true;
-            shellcheck.enable = true;
-            terraform = {
-              enable = true;
-              package = pkgs.terraform;
-            };
             typos.enable = true;
-          };
-          settings = {
-            formatter.shellcheck.options = ["--external-sources"];
           };
         };
         pre-commit.settings.hooks = {
           alejandra.enable = true;
-          shellcheck.enable = true;
           typos.enable = true;
           deadnix.enable = true;
           detect-aws-credentials.enable = true;
           detect-private-keys.enable = true;
-          terraform-validate.enable = true;
-          tflint.enable = true;
         };
       };
     };
